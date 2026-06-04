@@ -1,5 +1,6 @@
 import { TestStoreProvider } from './store/useTestStore';
 import { Layout } from './components/Layout';
+import { MetaForm } from './components/MetaForm';
 import { TEST_SECTIONS } from './data/testcases';
 
 function Placeholder({ id, title }: { id: string; title: string }) {
@@ -16,6 +17,7 @@ function Placeholder({ id, title }: { id: string; title: string }) {
 function AppContent() {
   return (
     <Layout>
+      <MetaForm />
       {TEST_SECTIONS.map((s) => (
         <Placeholder key={s.id} id={s.id} title={s.title} />
       ))}
