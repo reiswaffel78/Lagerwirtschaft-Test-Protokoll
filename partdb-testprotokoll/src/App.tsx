@@ -4,6 +4,7 @@ import { MetaForm } from './components/MetaForm';
 import { TestSection } from './components/TestSection';
 import { BugLog } from './components/BugLog';
 import { ReleaseDecision } from './components/ReleaseDecision';
+import { ExportButton } from './components/ExportButton';
 import { TEST_SECTIONS } from './data/testcases';
 
 function AppContent() {
@@ -17,6 +18,7 @@ function AppContent() {
       <BugLog />
 
       <ReleaseDecision />
+      <ExportButton />
     </Layout>
   );
 }
