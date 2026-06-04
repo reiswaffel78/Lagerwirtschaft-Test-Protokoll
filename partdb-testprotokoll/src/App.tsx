@@ -1,25 +1,15 @@
 import { TestStoreProvider } from './store/useTestStore';
 import { Layout } from './components/Layout';
 import { MetaForm } from './components/MetaForm';
+import { TestSection } from './components/TestSection';
 import { TEST_SECTIONS } from './data/testcases';
-
-function Placeholder({ id, title }: { id: string; title: string }) {
-  return (
-    <section id={`section-${id}`} className="mb-10 scroll-mt-16">
-      <h2 className="text-lg font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
-        {title}
-      </h2>
-      <p className="text-gray-400 text-sm">Testfälle folgen…</p>
-    </section>
-  );
-}
 
 function AppContent() {
   return (
     <Layout>
       <MetaForm />
       {TEST_SECTIONS.map((s) => (
-        <Placeholder key={s.id} id={s.id} title={s.title} />
+        <TestSection key={s.id} section={s} />
       ))}
 
       <section id="section-bugs" className="mb-10 scroll-mt-16">
