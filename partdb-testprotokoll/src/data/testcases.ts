@@ -11,6 +11,7 @@ export interface TestCase {
 export interface TestSection {
   id: string;
   title: string;
+  goal: string;
   cases: TestCase[];
 }
 
@@ -18,6 +19,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S0",
     title: "0 · Vorbereitung",
+    goal: "Sicherstellen dass die Testumgebung korrekt eingerichtet ist und alle Voraussetzungen für einen reproduzierbaren Funktionstest erfüllt sind.",
     cases: [
       {
         id: "V-1",
@@ -44,6 +46,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S1",
     title: "1 · Login & Oberfläche",
+    goal: "Verifizieren dass Authentifizierung, Rechtevergabe und die allgemeine Benutzeroberfläche nach dem Update korrekt funktionieren und keine unerwünschten Regressionen aufweisen.",
     cases: [
       {
         id: "A-01",
@@ -80,6 +83,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S2",
     title: "2 · Datenmigration — bestehende Daten",
+    goal: "Sicherstellen dass alle vor dem Update vorhandenen Daten (Teile, Kategorien, Lagerorte, Anhänge, Parameter) vollständig und korrekt in die neue Version übernommen wurden.",
     cases: [
       {
         id: "D-01",
@@ -126,6 +130,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S3",
     title: "3 · Suche & Filter",
+    goal: "Überprüfen dass die Volltextsuche, IPN/MPN-Suche sowie alle Filterfunktionen nach dem Update korrekte und vollständige Ergebnisse liefern.",
     cases: [
       {
         id: "S-01",
@@ -172,6 +177,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S4",
     title: "4 · Teile anlegen & bearbeiten",
+    goal: "Sicherstellen dass das Anlegen, Bearbeiten und Löschen von Teilen korrekt funktioniert und alle Pflichtfelder, Parameter sowie Metadaten zuverlässig gespeichert werden.",
     cases: [
       {
         id: "P-01",
@@ -228,6 +234,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S5",
     title: "5 · Bestand / Part Lots",
+    goal: "Verifizieren dass Lagerbestände korrekt erfasst, aktualisiert und summiert werden und die Bestandsverwaltung fehlerfrei mit mehreren Lagerorten umgeht.",
     cases: [
       {
         id: "L-01",
@@ -269,6 +276,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S6",
     title: "6 · Anhänge (Attachments)",
+    goal: "Sicherstellen dass Dateianhänge (PDFs, Bilder, externe Links) hochgeladen, angezeigt, heruntergeladen und gelöscht werden können.",
     cases: [
       {
         id: "AT-01",
@@ -300,6 +308,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S7",
     title: "7 · Projekte (BOM)",
+    goal: "Überprüfen dass Projekte angelegt, Stücklisten (BOM) bearbeitet und die Baubarkeitsberechnung auf Basis verfügbarer Bestände korrekt durchgeführt wird.",
     cases: [
       {
         id: "PR-01",
@@ -331,6 +340,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S8",
     title: "8 · Labels & Barcode-Ausgabe",
+    goal: "Sicherstellen dass der Label-Generator korrekte Vorschauen und druckbare PDFs mit lesbaren Barcodes/QR-Codes für Teile und Lagerorte erzeugt.",
     cases: [
       {
         id: "G-01",
@@ -367,6 +377,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S9",
     title: "9 · Event Log",
+    goal: "Verifizieren dass alle benutzerrelevanten Aktionen im Event Log protokolliert werden und die Filterfunktionen sowie Detailansichten korrekt funktionieren.",
     cases: [
       {
         id: "EL-01",
@@ -393,6 +404,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S10",
     title: "10 · Nutzereinstellungen",
+    goal: "Sicherstellen dass Benutzerprofile, Spracheinstellungen und Passwortänderungen korrekt gespeichert werden und nach einem Neuanmelden wirksam sind.",
     cases: [
       {
         id: "U-01",
@@ -424,6 +436,7 @@ export const TEST_SECTIONS: TestSection[] = [
   {
     id: "S11",
     title: "11 · Sicherheit & Negativtests",
+    goal: "Überprüfen dass nicht autorisierte Zugriffe auf Admin-Bereiche abgeblockt werden, XSS-Eingaben escaped dargestellt werden und Session-Handling korrekt funktioniert.",
     cases: [
       {
         id: "N-01",
