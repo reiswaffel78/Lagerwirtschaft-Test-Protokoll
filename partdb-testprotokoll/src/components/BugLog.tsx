@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTestStore } from '../store/useTestStore';
-import { BugEntry } from '../types';
+import type { BugEntry } from '../types';
 import { PlusCircle, Trash2 } from 'lucide-react';
 
 const PRIORITIES = ['P1', 'P2', 'P3', 'P4'] as const;

@@ -4,9 +4,8 @@ import {
   Text,
   View,
   StyleSheet,
-  Font,
 } from '@react-pdf/renderer';
-import { AppState } from '../types';
+import type { AppState } from '../types';
 import { TEST_SECTIONS } from '../data/testcases';
 
 // ── Styles ─────────────────────────────────────────────────────────────────

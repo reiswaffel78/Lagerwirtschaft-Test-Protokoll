@@ -1,5 +1,5 @@
-import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
-import { AppState, TestMeta, TestStatus, BugEntry, ReleaseDecision } from '../types';
+import React, { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react';
+import type { AppState, TestMeta, TestStatus, BugEntry, ReleaseDecision } from '../types';
 import { TEST_SECTIONS } from '../data/testcases';
 
 // ── Initial state ──────────────────────────────────────────────────────────

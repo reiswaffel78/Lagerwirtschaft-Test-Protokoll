@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useTestStore } from '../store/useTestStore';
-import { TestCase } from '../data/testcases';
-import { TestStatus } from '../types';
+import type { TestCase } from '../data/testcases';
+import type { TestStatus } from '../types';
 
 const BUTTONS: { status: TestStatus; label: string }[] = [
   { status: 'ok', label: 'OK' },

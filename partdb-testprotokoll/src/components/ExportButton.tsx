@@ -3,7 +3,7 @@ import { pdf } from '@react-pdf/renderer';
 import { Download, Loader2, AlertTriangle } from 'lucide-react';
 import { useTestStore } from '../store/useTestStore';
 import { ProtokollPDF } from '../pdf/ProtokollPDF';
-import { AppState } from '../types';
+import type { AppState } from '../types';
 
 function OpenCasesModal({
   openCount,

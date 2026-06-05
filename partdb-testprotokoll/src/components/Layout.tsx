@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RotateCcw, ChevronsDown } from 'lucide-react';
 import { useTestStore, clearStorage } from '../store/useTestStore';
 import { TEST_SECTIONS } from '../data/testcases';
-import { TestStatus } from '../types';
+import type { TestStatus } from '../types';
 
 interface NavItem {
   id: string;

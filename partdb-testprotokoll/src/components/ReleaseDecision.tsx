@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTestStore } from '../store/useTestStore';
-import { ReleaseDecision as ReleaseDecisionType } from '../types';
+import type { ReleaseDecision as ReleaseDecisionType } from '../types';
 import { CheckCircle2, Circle, AlertTriangle, CheckCheck, AlertCircle, XCircle } from 'lucide-react';
 
 interface CheckItem {

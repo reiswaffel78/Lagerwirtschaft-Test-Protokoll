@@ -1,5 +1,5 @@
 import { useTestStore } from '../store/useTestStore';
-import { TestSection as TestSectionType } from '../data/testcases';
+import type { TestSection as TestSectionType } from '../data/testcases';
 import { TestCaseRow } from './TestCaseRow';
 
 interface Props {
