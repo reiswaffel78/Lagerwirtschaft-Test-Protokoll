@@ -19,8 +19,8 @@ export function TestSection({ section }: Props) {
 
   return (
     <section id={`section-${section.id}`} className="mb-10 scroll-mt-16">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-3 pb-2 border-b border-gray-200">
+      {/* Header — sticky beim Scrollen */}
+      <div className="sticky top-[53px] z-10 flex items-center gap-3 mb-3 pb-2 border-b border-gray-200 bg-gray-50 pt-1">
         <h2 className="text-base font-semibold text-gray-900 flex-1">{section.title}</h2>
 
         {nokCount > 0 && (

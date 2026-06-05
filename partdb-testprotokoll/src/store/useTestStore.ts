@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, ReactNode } from 'react';
+import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
 import { AppState, TestMeta, TestStatus, BugEntry, ReleaseDecision } from '../types';
 import { TEST_SECTIONS } from '../data/testcases';
 
@@ -104,6 +104,28 @@ function reducer(state: AppState, action: Action): AppState {
   }
 }
 
+// ── LocalStorage ───────────────────────────────────────────────────────────
+
+const LS_KEY = 'partdb-test-state';
+
+function loadFromStorage(): AppState {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return initialState;
+    const parsed = JSON.parse(raw) as AppState;
+    // Merge: ensure all current test case IDs exist in results (handles new testcases after save)
+    const savedIds = new Set(parsed.results.map((r) => r.caseId));
+    const missing = initialState.results.filter((r) => !savedIds.has(r.caseId));
+    return { ...parsed, results: [...parsed.results, ...missing] };
+  } catch {
+    return initialState;
+  }
+}
+
+export function clearStorage() {
+  localStorage.removeItem(LS_KEY);
+}
+
 // ── Context ────────────────────────────────────────────────────────────────
 
 interface StoreContextValue {
@@ -114,7 +136,16 @@ interface StoreContextValue {
 const StoreContext = createContext<StoreContextValue | null>(null);
 
 export function TestStoreProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, undefined, loadFromStorage);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify(state));
+    } catch {
+      // storage quota exceeded — fail silently
+    }
+  }, [state]);
+
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
       {children}

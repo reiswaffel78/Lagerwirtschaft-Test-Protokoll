@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useTestStore } from '../store/useTestStore';
 import { TestCase } from '../data/testcases';
 import { TestStatus } from '../types';
@@ -24,6 +25,7 @@ export function TestCaseRow({ testCase }: Props) {
   const status = result?.status ?? 'open';
   const note = result?.note ?? '';
   const isNok = status === 'nok';
+  const btnRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   function setStatus(newStatus: TestStatus) {
     dispatch({
@@ -39,8 +41,20 @@ export function TestCaseRow({ testCase }: Props) {
     });
   }
 
+  // Arrow-key navigation within the button group
+  function handleKeyDown(e: React.KeyboardEvent, index: number) {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      btnRefs.current[(index + 1) % BUTTONS.length]?.focus();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      btnRefs.current[(index - 1 + BUTTONS.length) % BUTTONS.length]?.focus();
+    }
+  }
+
   return (
     <div
+      id={`testcase-${testCase.id}`}
       className={`rounded-lg border transition-colors ${
         isNok ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white'
       }`}
@@ -58,14 +72,23 @@ export function TestCaseRow({ testCase }: Props) {
         <p className="text-sm text-gray-500 leading-snug">{testCase.expected}</p>
 
         {/* Status-Toggle */}
-        <div className="flex gap-1 flex-shrink-0">
-          {BUTTONS.map(({ status: s, label }) => {
+        <div
+          className="flex gap-1 flex-shrink-0"
+          role="group"
+          aria-label={`Status für ${testCase.id}`}
+        >
+          {BUTTONS.map(({ status: s, label }, i) => {
             const isActive = status === s;
             return (
               <button
                 key={s}
+                ref={(el) => { btnRefs.current[i] = el; }}
+                data-status={s}
                 onClick={() => setStatus(isActive ? 'open' : s)}
-                className={`px-2.5 py-1 text-xs font-semibold rounded border transition-colors ${
+                onKeyDown={(e) => handleKeyDown(e, i)}
+                aria-pressed={isActive}
+                tabIndex={isActive || (status === 'open' && i === 0) ? 0 : -1}
+                className={`px-2.5 py-1 text-xs font-semibold rounded border transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-400 ${
                   isActive
                     ? activeColors[s]
                     : 'bg-white text-gray-400 border-gray-300 hover:border-gray-400 hover:text-gray-600'
